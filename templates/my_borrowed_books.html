@@ -1,0 +1,29 @@
+<h2>My Borrowed Books</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Borrow Date</th>
+            <th>Return Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in borrowed_books %}
+        <tr>
+            <td>{{ book['title'] }}</td>
+            <td>{{ book['author'] }}</td>
+            <td>{{ book['borrow_date'] }}</td>
+            <td>{{ book['return_date'] if book['return_date'] else 'Not Returned' }}</td>
+            <td>
+                {% if not book['return_date'] %}
+                <form action="{{ url_for('return_book', borrowing_id=book['borrowing_id']) }}" method="POST">
+                    <button type="submit" class="btn btn-warning">Return</button>
+                </form>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

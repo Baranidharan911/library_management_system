@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>{% if member %}Edit Member{% else %}Add Member{% endif %}</h2>
+
+<form method="POST" action="">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="{{ member['name'] if member else '' }}" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" value="{{ member['email'] if member else '' }}" required>
+
+    <button type="submit">{% if member %}Update{% else %}Add{% endif %} Member</button>
+</form>
+
+<h3>Borrowed Books</h3>
+
+{% if member['borrowed_books'] %}
+    <ul>
+        {% for book in member['borrowed_books'] %}
+        <li>
+            {{ book['title'] }} by {{ book['author'] }} 
+            (Borrowed on: {{ book['borrow_date'] }})
+
+            {% if not book['return_date'] %}
+                <form action="{{ url_for('return_book', borrowing_id=book['borrowing_id']) }}" method="POST" style="display: inline;">
+                    <button type="submit" class="button">Mark as Returned</button>
+                </form>
+            {% else %}
+                <span>Returned on: {{ book['return_date'] }}</span>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No borrowed books.</p>
+{% endif %}
+
+<a href="{{ url_for('members') }}" class="button">Back to Members</a>
+{% endblock %}

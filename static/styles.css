@@ -1,0 +1,300 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f4f8;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(90deg, #306998, #274c77); 
+    color: white;
+    padding: 2.5rem 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 4px solid #ffd43b; 
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: #ffd43b; 
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+nav a:hover {
+    color: #fff;
+    text-decoration: underline;
+    transition: color 0.3s;
+}
+
+main {
+    padding: 25px;
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    border-left: 5px solid #306998; 
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    background-color: #f9f9f9;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 1rem;
+}
+
+th, td {
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #306998; 
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+td {
+    background-color: #fdfdfd;
+}
+
+tr:hover {
+    background-color: #e1ecf4;
+}
+
+.button {
+    display: inline-block;
+    font-size: 1rem;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    text-align: center;
+    background-color: #ecf1f4;
+    width: auto;
+    cursor: pointer;
+}
+
+.button-add {
+    background-color: #28a745;
+    color: white;
+}
+
+.button-add:hover {
+    background-color: #218838; 
+}
+
+.button-edit {
+    background-color: #ffc107; 
+    color: black;
+}
+
+.button-edit:hover {
+    background-color: #e0a800; 
+}
+
+.button-delete {
+    background-color: #d9534f;
+    color: white;
+}
+
+.button-delete:hover {
+    background-color: #c9302c; 
+}
+
+form {
+    margin: 25px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    width: 80%;
+    font-size: 1.1rem;
+}
+
+form input, form select {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+form button {
+    background-color: #ffd43b; 
+    color: #333;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    width: auto;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #f0c534; 
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    margin: 25px 0;
+}
+
+.profile-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.login-register-form input {
+    padding: 12px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.borrow-book {
+    margin-top: 25px;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.borrow-book button {
+    background-color: #306998;
+    color: white;
+    font-size: 1.1rem;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto;
+    transition: background-color 0.3s;
+}
+
+.borrow-book button:hover {
+    background-color: #274c77;
+}
+
+.message {
+    margin-top: 25px;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+@media (min-width: 1200px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 1000px;
+    }
+}
+@media (min-width: 1200px) {
+    .h3, h3 {
+        font-size: 2rem;
+        width: 80%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .h2, h2 {
+        font-size: 2rem;
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    table {
+        font-size: 14px;
+        overflow-x: auto;
+    }
+
+    nav {
+        text-align: center;
+    }
+
+    nav a {
+        font-size: 14px;
+        margin: 10px 0;
+    }
+
+    form input, form select, form button {
+        width: 100%;
+    }
+
+    .borrow-book button {
+        width: 100%;
+    }
+
+    .profile-form input {
+        padding: 10px;
+        width: 100%;
+    }
+
+    header h1 {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    nav a {
+        font-size: 12px;
+        margin: 5px 0;
+    }
+
+    main {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    form input, form select {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .profile-form input {
+        padding: 8px;
+    }
+
+    form button, .borrow-book button {
+        font-size: 12px;
+    }
+}

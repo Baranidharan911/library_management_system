@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Welcome to the Library Management System</h2>
+<p>Manage your library's books and members efficiently.</p>
+
+<div>
+    {% if 'role' in session %}
+        {% if session['role'] == 'Librarian' %}
+            <a href="{{ url_for('books') }}" class="button">Manage Books</a>
+            <a href="{{ url_for('members') }}" class="button">Manage Members</a>
+            <ul>
+                {% for book in books %}
+                    <li>
+                        <a href="{{ url_for('book_reservations', book_id=book.id) }}" class="btn btn-primary">
+                            View Reservations for {{ book.title }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% elif session['role'] == 'Member' %}
+            <a href="{{ url_for('books') }}" class="button">Browse Books</a>
+            <a href="{{ url_for('my_reservations') }}" class="button">View My Reservations</a> 
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

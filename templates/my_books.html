@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>My Borrowed Books</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Borrowed On</th>
+            <th>Return Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in borrowed_books %}
+        <tr>
+            <td>{{ book['title'] }}</td>
+            <td>{{ book['author'] }}</td>
+            <td>{{ book['borrow_date'] }}</td>
+            <td>{{ book['return_date'] if book['return_date'] else 'Not Returned Yet' }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4">You have not borrowed any books yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

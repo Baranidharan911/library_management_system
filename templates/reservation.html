@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Reserve Book ID: {{ book_id }}</h2>
+
+{% if reservation %}
+    <p>You have already reserved this book. Your queue position is {{ reservation['queue_position'] }}.</p>
+{% else %}
+    <p>This book is available for reservation. Please click the button below to reserve it.</p>
+
+    <form method="POST">
+        <button type="submit" class="btn btn-primary">Reserve This Book</button>
+    </form>
+{% endif %}
+
+{% endblock %}

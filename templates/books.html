@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Books</h2>
+
+{% if session['role'] == 'Librarian' %}
+    <a href="{{ url_for('add_book') }}" class="btn btn-primary mb-4">Add Book</a>
+{% endif %}
+
+
+<form method="POST" action="{{ url_for('books') }}" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="search" class="form-control" placeholder="Search books by title, author, or genre" value="{{ search }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+</form>
+
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+            <tr>
+                <td>{{ book['id'] }}</td>
+                <td>{{ book['title'] }}</td>
+                <td>{{ book['author'] }}</td>
+                <td>{{ book['genre'] }}</td>
+                <td>{{ book['status'] }}</td>
+                <td>
+
+                    {% if session['role'] == 'Member' %}
+                        {% if book['status'] == 'Available' %}
+
+                            <form action="{{ url_for('borrow_book', book_id=book['id']) }}" method="POST" style="display: inline;">
+                                <button type="submit" class="btn btn-success btn-sm">Borrow</button>
+                            </form>
+                        {% else %}
+
+                            {% if book['borrowed_by_user_id'] != session['user_id'] %}
+                                <form action="{{ url_for('reserve_book', book_id=book['id']) }}" method="POST" style="display: inline;">
+                                    <button type="submit" class="btn btn-warning btn-sm">Reserve</button>
+                                </form>
+                            {% else %}
+                                <span class="text-muted">You have already borrowed this book</span>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                    
+                    {% if session['role'] == 'Librarian' %}
+                        <a href="{{ url_for('edit_book', book_id=book['id']) }}" class="btn btn-info btn-sm">Edit</a>
+                        <form action="{{ url_for('delete_book', book_id=book['id']) }}" method="POST" style="display: inline;">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                        <a href="{{ url_for('book_reservations', book_id=book['id']) }}" class="btn btn-secondary btn-sm">View Reservations</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6">No books found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% if total_pages > 1 %}
+    <nav>
+        <ul class="pagination">
+            <li class="page-item {% if page == 1 %}disabled{% endif %}">
+                <a href="{{ url_for('books', page=1) }}" class="page-link">First</a>
+            </li>
+            <li class="page-item {% if page == 1 %}disabled{% endif %}">
+                <a href="{{ url_for('books', page=page-1) }}" class="page-link">Prev</a>
+            </li>
+            <li class="page-item {% if page == total_pages %}disabled{% endif %}">
+                <a href="{{ url_for('books', page=page+1) }}" class="page-link">Next</a>
+            </li>
+            <li class="page-item {% if page == total_pages %}disabled{% endif %}">
+                <a href="{{ url_for('books', page=total_pages) }}" class="page-link">Last</a>
+            </li>
+        </ul>
+    </nav>
+{% endif %}
+{% endblock %}

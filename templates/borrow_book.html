@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Borrow Book</h2>
+
+<p>Are you sure you want to borrow the book titled "{{ book['title'] }}" by {{ book['author'] }}?</p>
+
+<form method="POST">
+    <button type="submit">Borrow Book</button>
+</form>
+
+<a href="{{ url_for('books') }}" class="button">Back to Books</a>
+{% endblock %}
